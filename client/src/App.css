@@ -1,0 +1,17 @@
+/* We removed the default centering and max-width constraints 
+   so your Dashboard can use the full screen width */
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* Smooth fade-in animation utility */
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

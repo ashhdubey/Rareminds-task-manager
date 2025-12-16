@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  /* Light Mode: White background */
+  /* Dark Mode: Pure Black background */
+  @apply bg-white text-gray-900 dark:bg-black dark:text-gray-200 transition-colors duration-300 antialiased;
+}
+
+/* Scrollbar Styling for the Black Theme */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-400 dark:bg-gray-800 rounded-full;
+}
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-500 dark:bg-gray-700;
+}
