@@ -7,7 +7,7 @@ import { toast } from 'react-hot-toast';
 import { 
   Plus, Trash2, Calendar, User, ListTodo, 
   ChevronLeft, ChevronRight, Search, Loader2, Github 
-} from 'lucide-react'; // <--- Added Github Icon here
+} from 'lucide-react'; 
 import { useAuth } from '../context/AuthContext';
 
 const Dashboard = () => {
@@ -61,10 +61,16 @@ const Dashboard = () => {
 
   // --- SOCKET.IO ---
   useEffect(() => {
+    // You might want to update this URL to your Render backend URL in production
+    // e.g. io('https://rareminds-backend-29x3.onrender.com');
     const socket = io('http://localhost:5000'); 
 
     socket.on('taskCreated', (newTask) => {
       if (user.role === 'manager' || newTask.assignedTo?._id === user._id) {
+        // We only add it here if it's NOT the one we just created ourselves 
+        // (to avoid duplicates since we are now fetching manually), 
+        // OR simply rely on the fetchTasks below and remove this if desired.
+        // For now, keeping it is fine as React key handling usually avoids duplicates if IDs match.
         setTasks((prev) => [newTask, ...prev]); 
         toast.success(`New Task: ${newTask.title}`);
       }
@@ -112,8 +118,13 @@ const Dashboard = () => {
     try {
       const taskData = { ...formData, assignedTo: formData.assignedTo || user._id };
       await api.post('/tasks', taskData);
+      
       setShowForm(false);
       setFormData({ title: '', description: '', priority: 'Medium', dueDate: '', assignedTo: users[0]?._id || '' });
+      
+      // ✅ THIS IS THE FIX: Refresh tasks immediately after adding
+      fetchTasks(currentPage); 
+
     } catch (error) {
       toast.error('Failed to create task');
     }
@@ -123,6 +134,8 @@ const Dashboard = () => {
     if (!window.confirm('Delete this task?')) return;
     try {
       await api.delete(`/tasks/${id}`);
+      // Recommended: refresh after delete as well
+      fetchTasks(currentPage); 
     } catch (error) {
       toast.error('Failed to delete');
     }
