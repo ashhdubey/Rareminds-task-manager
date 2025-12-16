@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'https://rareminds-backend-29x3.onrender.com',
+  baseURL: 'https://rareminds-backend-29x3.onrender.com/api',
 });
 
 api.interceptors.request.use((config) => {
