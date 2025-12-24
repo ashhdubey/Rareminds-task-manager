@@ -90,7 +90,6 @@ password: rareminds
 ---
 
 ## 🌍 Deployment
-If deployed, mention:
 - Backend: Render
 - Frontend: Netlify
 
