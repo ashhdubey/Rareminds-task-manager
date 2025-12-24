@@ -40,6 +40,60 @@ This project uses modern technologies for optimal performance and user experienc
 | **🖱️ Drag-and-Drop** | [cite_start]Kanban-style board to change task status (Pending → Completed). | ✅ **Done** |
 | **📄 API Pagination** | [cite_start]Optimized performance for large task lists. | ✅ **Done** |
 
+## 🛠️ Setup Instructions
+
+### 1️⃣ Clone Repo
+```bash
+git clone https://github.com/your-username/your-repo.git
+cd your-repo
+```
+
+### 2️⃣ Install Dependencies
+```bash
+npm install
+```
+
+### 3️⃣ Configure Environment
+Create a `.env` file in the root directory:
+
+```
+PORT=5000
+MONGO_URI=your_mongodb_url
+JWT_SECRET=your_secret_key
+```
+
+### 4️⃣ Run the Project
+Development
+```bash
+npm run dev
+```
+
+Production
+```bash
+npm start
+```
+
+App runs on:
+```
+http://localhost:5000
+```
+
+---
+
+## 🔐 Sample Login Credentials
+Use these if authentication is implemented:
+```
+email: rareminds@gmail.com
+password: rareminds
+```
+
+---
+
+## 🌍 Deployment
+If deployed, mention:
+- Backend: Render
+- Frontend: Netlify
+
 <div align="center">
 
   ### Built with ❤️ by [Ashish Dubey](https://ashhdubey.netlify.app/)
